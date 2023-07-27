@@ -14,11 +14,11 @@ import Footer from "../src/components/Footer/Footer";
 
 const Layout = () => {
   return (
-    <>
+    <div className="app">
       <Navbar />
       <Outlet />
       <Footer />
-    </>
+    </div>
   );
 };
 
