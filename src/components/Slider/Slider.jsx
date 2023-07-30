@@ -6,9 +6,9 @@ const Slider = () => {
   const [currentImage, setCurrentImage] = useState(0);
 
   const datas = [
-    "https://images.pexels.com/photos/1126935/pexels-photo-1126935.jpeg",
-    "https://images.pexels.com/photos/2709563/pexels-photo-2709563.jpeg",
-    "https://images.pexels.com/photos/2702800/pexels-photo-2702800.jpeg",
+    "https://images.pexels.com/photos/1126935/pexels-photo-1126935.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
+    "https://images.pexels.com/photos/2709563/pexels-photo-2709563.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
+    "https://images.pexels.com/photos/2702800/pexels-photo-2702800.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
   ];
 
   const handlePrevImg = () => {

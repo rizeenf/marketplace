@@ -24,17 +24,18 @@ const Footer = () => {
         <div className="card flex flex-1 justify-center  flex-col text-justify gap-1">
           <h2 className=" text-lg font-semibold">About</h2>
           <span>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod
-            dolorem sit delectus harum praesentium pariatur voluptatum obcaecati
-            tempore, ad quibusdam? Lorem ipsum dolor sit amet consectetur,
+            Welcome to shop apprizcation, your one-stop destination for easy
+            shopping application. We focus on continuous improvement ensures it
+            stays responsive to customer needs and industry trends.
           </span>
         </div>
         <div className="card flex flex-1 justify-center  flex-col text-justify gap-1">
           <h2 className=" text-lg font-semibold">Contact</h2>
           <span>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rerum,
-            illo ipsam qui hic praesentium aperiam deleniti excepturi assumenda.
-            Eveniet, aliquam. Lorem ipsum dolor sit amet, consectetur
+            Provide contact information or links to get in touch with us. Thank
+            you for being a part of shop apprizcation. Together, let's prodive a
+            customer-centric approach with a wide selection of quality products
+            at competitive prices.
           </span>
         </div>
       </div>
