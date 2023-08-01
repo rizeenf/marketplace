@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import List from "../../components/List/List";
 
 const Products = () => {
+  const [priceRange, setPriceRange] = useState(1000);
+
   return (
     <div className="products flex mb-24">
       <div className="left flex-[1] ml-5 flex flex-col gap-10 sticky top-3 h-full ">
@@ -30,8 +32,13 @@ const Products = () => {
           <h1 className=" text-lg font-semibold">Filter by price</h1>
           <div className="filteritem flex justify-center items-center gap-2">
             <span>0</span>
-            <input type="range" min={0} max={1000} />
-            <span>1000</span>
+            <input
+              type="range"
+              min={1}
+              max={999}
+              onChange={(e) => setPriceRange(e.target.value)}
+            />
+            <span>IDR {priceRange} K</span>
           </div>
         </div>
         <div className="filter flex flex-col self-start h-fit">
