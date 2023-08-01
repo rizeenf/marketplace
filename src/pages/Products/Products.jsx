@@ -1,7 +1,67 @@
 import React from "react";
+import List from "../../components/List/List";
 
 const Products = () => {
-  return <div>Products</div>;
+  return (
+    <div className="products flex mb-24">
+      <div className="left flex-[1] ml-5 flex flex-col gap-10 sticky top-3 h-full ">
+        <div className="filter flex flex-col self-start h-fit">
+          <h1 className=" text-lg font-semibold">Product categories</h1>
+          <div className="filteritem flex flex-col justify-center items-start">
+            <div className="flex gap-2">
+              <input type="checkbox" id="1" />
+              <label htmlFor="1">Men</label>
+            </div>
+            <div className="flex gap-2">
+              <input type="checkbox" id="2" />
+              <label htmlFor="2">Women</label>
+            </div>
+            <div className="flex gap-2">
+              <input type="checkbox" id="3" />
+              <label htmlFor="3">Kids</label>
+            </div>
+            <div className="flex gap-2">
+              <input type="checkbox" id="4" />
+              <label htmlFor="4">Batik</label>
+            </div>
+          </div>
+        </div>
+        <div className="filter flex flex-col self-start h-fit">
+          <h1 className=" text-lg font-semibold">Filter by price</h1>
+          <div className="filteritem flex justify-center items-center gap-2">
+            <span>0</span>
+            <input type="range" min={0} max={1000} />
+            <span>1000</span>
+          </div>
+        </div>
+        <div className="filter flex flex-col self-start h-fit">
+          <h1 className=" text-lg font-semibold">Sort by</h1>
+          <div className="filteritem flex flex-col justify-center items-center gap-2">
+            <div className=" flex gap-2">
+              <input type="radio" id="lowestPrice" name="price" />
+              <label htmlFor="lowestPrice">Lowest Price</label>
+            </div>
+            <div className=" flex gap-2">
+              <input type="radio" id="highestPrice" name="price" />
+              <label htmlFor="highestPrice">Highest Price</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="right flex-[4] ">
+        <div className="top w-full h-64 overflow-hidden">
+          <img
+            src="https://images.pexels.com/photos/4448861/pexels-photo-4448861.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            alt=""
+            className=" w-full object-cover"
+          />
+        </div>
+        <div className="bottom ">
+          <List />
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Products;

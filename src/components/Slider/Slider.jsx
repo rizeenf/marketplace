@@ -19,7 +19,7 @@ const Slider = () => {
   };
 
   return (
-    <div className=" h-[calc(100vh-4rem)] w-screen">
+    <div className=" h-[calc(100vh-4rem)] w-screen overflow-hidden">
       <div
         className="flex flex-row h-full w-[300vw] transition-all duration-1000 ease-in-out"
         style={{ transform: `translateX(-${currentImage * 100}vw)` }}

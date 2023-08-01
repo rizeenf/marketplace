@@ -1,5 +1,6 @@
 import React from "react";
 import Flag from "/id.svg";
+import { Link } from "react-router-dom";
 import ExpandMoreOutlinedIcon from "@mui/icons-material/ExpandMoreOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import PermIdentityOutlinedIcon from "@mui/icons-material/PermIdentityOutlined";
@@ -27,7 +28,9 @@ const Navbar = () => {
           </div>
         </div>
         <div className="center text-xl font-semibold">
-          <h1>SHOP APPRIZCATION</h1>
+          <Link to={"/"}>
+            <h1>SHOP APPRIZCATION</h1>
+          </Link>
         </div>
         <div className="right flex justify-center items-center mx-5 w-max h-max py-4 ">
           <div className="item flex justify-center items-center text-lg gap-3 mx-5 text-gray-600">

@@ -3,7 +3,7 @@ import Payment from "../../assets/payment.jpg";
 
 const Footer = () => {
   return (
-    <div className="footer h-60 text-sm text-gray-500 px-56 my-8">
+    <div className="footer h-64 text-sm text-gray-500 px-56 my-8 overflow-hidden">
       <div className="top flex justify-center items-center gap-10">
         <div className="card flex flex-1 justify-center  flex-col text-justify gap-1 ">
           <h2 className=" text-lg font-semibold">Categories</h2>

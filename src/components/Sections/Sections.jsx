@@ -42,7 +42,7 @@ const Sections = ({ type }) => {
   ];
 
   return (
-    <div className="sections my-24 mx-64">
+    <div className="sections my-24 mx-48">
       <section className="flex justify-center items-center flex-col">
         <div className="top flex justify-between items-center">
           <h1 className="capitalize flex flex-[2] text-3xl font-semibold">
@@ -57,7 +57,7 @@ const Sections = ({ type }) => {
             for the whole collection.
           </span>
         </div>
-        <div className="bottom flex justify-center items-center gap-5">
+        <div className="bottom flex justify-center items-center gap-3">
           {items.map((item) => (
             <Card item={item} key={item.id} />
           ))}

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Categories = () => {
   return (
-    <div className="categories m-3 flex gap-3 h-[80vh] ">
+    <div className="categories m-3 flex gap-3 h-[80vh] overflow-hidden ">
       <div className="col flex flex-col gap-3 flex-1 ">
         <div className="row flex flex-1 relative">
           <img
