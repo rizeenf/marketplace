@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Flag from "/id.svg";
 import { Link } from "react-router-dom";
 import ExpandMoreOutlinedIcon from "@mui/icons-material/ExpandMoreOutlined";
@@ -6,10 +6,13 @@ import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import PermIdentityOutlinedIcon from "@mui/icons-material/PermIdentityOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import Cart from "../Cart/Cart";
 
 const Navbar = () => {
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
   return (
-    <div className="h-16 flex justify-center items-center">
+    <div className="h-16 flex justify-center items-center relative">
       <div className="wrap w-screen h-full flex justify-between items-center ">
         <div className="left flex justify-center items-center mx-8 gap-3 ">
           <div className="item flex justify-center items-center text-lg text-gray-600">
@@ -42,7 +45,10 @@ const Navbar = () => {
             <div className="item">
               <SearchOutlinedIcon />
             </div>
-            <div className="item relative h-max w-max overflow-visible ">
+            <div
+              className="item relative h-max w-max overflow-visible cursor-pointer"
+              onClick={() => setIsCartOpen(!isCartOpen)}
+            >
               <ShoppingCartOutlinedIcon />
               <div className="bubble h-5 w-5 rounded-full bg-red-400 absolute -top-2 -right-2  flex items-center justify-center text-white z-10">
                 7
@@ -57,6 +63,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
+      {isCartOpen ? <Cart /> : ""}
     </div>
   );
 };
