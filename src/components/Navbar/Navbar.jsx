@@ -33,7 +33,7 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="right flex justify-center items-center mx-5 w-max h-max py-4 ">
-          <div className="item flex justify-center items-center text-lg gap-3 mx-5 text-gray-600">
+          <div className="item flex justify-center items-center text-lg gap-4 mx-5 text-gray-600">
             <span>Homepage</span>
             <span>Stores</span>
             <span>Promo</span>
