@@ -22,9 +22,9 @@ const Sections = ({ type }) => {
             for the whole collection.
           </span>
         </div>
-        <div className="bottom flex justify-center items-center gap-3">
+        <div className="bottom flex justify-center items-center gap-3 text-gray-600">
           {error
-            ? "Erorr .."
+            ? "Erorr showing data .."
             : loading
             ? "Loading .."
             : data?.map((item) => <Card item={item} key={item.id} />)}

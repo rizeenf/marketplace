@@ -1,8 +1,27 @@
 import React, { useState } from "react";
 import List from "../../components/List/List";
+import { useParams } from "react-router-dom";
+import useFetch from "../../hook/useFetch";
 
 const Products = () => {
   const [priceRange, setPriceRange] = useState(1000);
+  const categoryId = parseInt(useParams().id);
+  const [selectedSubCategories, setSelectedSubCategories] = useState([]);
+
+  const { data, loading, error } = useFetch(
+    `sub-categories?filters[categories][id][$eq]=${categoryId}`
+  );
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    const checked = e.target.checked;
+
+    setSelectedSubCategories(
+      checked
+        ? [...selectedSubCategories, value]
+        : selectedSubCategories.filter((item) => item !== value)
+    );
+  };
 
   return (
     <div className="products flex mb-24">
@@ -10,22 +29,21 @@ const Products = () => {
         <div className="filter flex flex-col self-start h-fit">
           <h1 className=" text-lg font-semibold">Product categories</h1>
           <div className="filteritem flex flex-col justify-center items-start">
-            <div className="flex gap-2">
-              <input type="checkbox" id="1" />
-              <label htmlFor="1">Men</label>
-            </div>
-            <div className="flex gap-2">
-              <input type="checkbox" id="2" />
-              <label htmlFor="2">Women</label>
-            </div>
-            <div className="flex gap-2">
-              <input type="checkbox" id="3" />
-              <label htmlFor="3">Kids</label>
-            </div>
-            <div className="flex gap-2">
-              <input type="checkbox" id="4" />
-              <label htmlFor="4">Batik</label>
-            </div>
+            {error
+              ? "Something went wrong.."
+              : loading
+              ? "Loading .."
+              : data?.map((item) => (
+                  <div className="flex gap-2 capitalize" key={item.id}>
+                    <input
+                      type="checkbox"
+                      id={item.id}
+                      value={item.id}
+                      onChange={handleChange}
+                    />
+                    <label htmlFor={item.id}>{item.attributes.title}</label>
+                  </div>
+                ))}
           </div>
         </div>
         <div className="filter flex flex-col self-start h-fit">
@@ -64,7 +82,11 @@ const Products = () => {
           />
         </div>
         <div className="bottom ">
-          <List />
+          <List
+            priceRange={priceRange}
+            categoryId={categoryId}
+            selectedSubCategories={selectedSubCategories}
+          />
         </div>
       </div>
     </div>

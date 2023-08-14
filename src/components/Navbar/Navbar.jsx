@@ -24,10 +24,18 @@ const Navbar = () => {
             <ExpandMoreOutlinedIcon />
           </div>
           <div className="item flex justify-center items-center text-lg gap-3 mx-5 text-gray-600">
-            <span>Men</span>
-            <span>Women</span>
-            <span>Kids</span>
-            <span>Batik</span>
+            <Link to={"products/2"}>
+              <span>Men</span>
+            </Link>
+            <Link to={"products/1"}>
+              <span>Women</span>
+            </Link>
+            <Link to={"products/3"}>
+              <span>Kids</span>
+            </Link>
+            <Link to={"products/4"}>
+              <span>Batik</span>
+            </Link>
           </div>
         </div>
         <div className="center text-xl font-semibold">
