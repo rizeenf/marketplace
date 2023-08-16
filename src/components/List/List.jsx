@@ -2,11 +2,11 @@ import React from "react";
 import Card from "../Card/Card";
 import useFetch from "../../hook/useFetch";
 
-const List = ({ categoryId, priceRange, selectedSubCategories }) => {
+const List = ({ categoryId, priceRange, selectedSubCategories, sort }) => {
   const { data, loading, error } = useFetch(
     `products?populate=*&filters[categories][id][$eq]=${categoryId}${selectedSubCategories.map(
       (item) => `&filters[subCategories][id][$eq]=${item}`
-    )}&filters[price][$lte]=${priceRange}`
+    )}&filters[price][$lte]=${priceRange}&sort=price:${sort}`
   );
 
   return (

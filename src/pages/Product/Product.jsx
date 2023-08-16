@@ -1,75 +1,75 @@
 import React, { useState } from "react";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import BalanceOutlinedIcon from "@mui/icons-material/BalanceOutlined";
+import useFetch from "../../hook/useFetch";
+import { useParams } from "react-router-dom";
 
 const Product = () => {
-  const [currentMainImg, setCurrentMainImg] = useState(0);
+  const [currentMainImg, setCurrentMainImg] = useState("img1");
   const [quantity, setQuantity] = useState(1);
+  const productId = parseInt(useParams().id);
 
-  const images = [
-    "https://images.pexels.com/photos/1329808/pexels-photo-1329808.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    "https://images.pexels.com/photos/1425249/pexels-photo-1425249.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    "https://images.pexels.com/photos/1425248/pexels-photo-1425248.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  ];
+  const { data, loading, error } = useFetch(`products/${productId}?populate=*`);
+
   return (
     <div className="product flex mx-16">
       <div className="left flex-1 flex gap-2 h-full justify-center">
-        <div className="sideimg flex flex-col justify-between max-h-screen gap-1">
+        <div className="sideimg flex flex-col justify-start max-h-screen gap-1">
           <img
-            src={images[0]}
+            src={
+              import.meta.env.VITE_APP_URL +
+              data?.attributes?.img1.data.attributes.url
+            }
             alt="Images"
             className=" w-32 h-48 object-cover cursor-pointer hover:opacity-70 "
-            onClick={() => setCurrentMainImg(0)}
+            onClick={() => setCurrentMainImg("img1")}
           />
           <img
-            src={images[1]}
+            src={
+              import.meta.env.VITE_APP_URL +
+              data?.attributes?.img2.data.attributes.url
+            }
             alt="Images"
             className=" w-32 h-48 object-cover cursor-pointer hover:opacity-70 "
-            onClick={() => setCurrentMainImg(1)}
-          />
-          <img
-            src={images[2]}
-            alt="Images"
-            className=" w-32 h-48 object-cover cursor-pointer hover:opacity-70 "
-            onClick={() => setCurrentMainImg(2)}
+            onClick={() => setCurrentMainImg("img2")}
           />
         </div>
         <img
-          src={images[`${currentMainImg}`]}
+          src={
+            import.meta.env.VITE_APP_URL +
+            data?.attributes?.[currentMainImg].data.attributes.url
+          }
           className="mainImg w-[420px] h-[600px] object-cover"
         />
       </div>
       <div className="right flex-1 flex flex-col gap-5 mt-3 text-gray-700">
         <div className="div flex justify-around items-center flex-row p-2">
-          <div className="title text-lg font-semibold">Woman Skirt Jeans</div>
+          <div className="title text-lg font-semibold">
+            {data?.attributes?.title}
+          </div>
           <div className="price text-2xl font-semibold text-red-800">
-            IDR 58.000
+            IDR {data?.attributes?.price}.000
           </div>
         </div>
         <div className="desc text-sm text-gray-400 text-justify">
-          Fabric: Denim is a sturdy cotton twill fabric that is known for its
-          durability and rugged appearance. It often has a distinctive diagonal
-          pattern and is commonly associated with casual wear. Styling: The
-          styling options for a jeans skirt are numerous. It can create a
-          casual, chic, or even a slightly edgy look, depending on how it's
-          paired with other clothing items and accessories
+          {data?.attributes?.desc}
         </div>
         <div className="qty mt-16 flex gap-5 font-semibold text-lg items-center">
           <button
-            className="min bg-red-100 w-12 h-10"
+            className="min bg-red-100 w-12 h-10 hover:opacity-70"
             onClick={() => setQuantity(quantity === 1 ? 1 : (prev) => prev - 1)}
           >
             -
           </button>
           <span>{quantity}</span>
           <button
-            className="plus bg-red-100 w-12 h-10"
+            className="plus bg-red-100 w-12 h-10 hover:opacity-70"
             onClick={() => setQuantity((prev) => prev + 1)}
           >
             +
           </button>
         </div>
-        <button className="addCart bg-red-400 w-36 text-lg text-white rounded-sm h-10 flex justify-center items-center ">
+        <button className="addCart bg-red-400 w-36 text-lg text-white rounded-sm h-10 flex justify-center items-center hover:opacity-70">
           Add to cart
         </button>
         <div className="option flex flex-row gap-8 text-sm text-gray-500">

@@ -5,8 +5,9 @@ import useFetch from "../../hook/useFetch";
 
 const Products = () => {
   const [priceRange, setPriceRange] = useState(1000);
-  const categoryId = parseInt(useParams().id);
   const [selectedSubCategories, setSelectedSubCategories] = useState([]);
+  const [sort, setSort] = useState("asc");
+  const categoryId = parseInt(useParams().id);
 
   const { data, loading, error } = useFetch(
     `sub-categories?filters[categories][id][$eq]=${categoryId}`
@@ -22,7 +23,6 @@ const Products = () => {
         : selectedSubCategories.filter((item) => item !== value)
     );
   };
-
   return (
     <div className="products flex mb-24">
       <div className="left flex-[1] ml-5 flex flex-col gap-10 sticky top-3 h-full ">
@@ -63,11 +63,21 @@ const Products = () => {
           <h1 className=" text-lg font-semibold">Sort by</h1>
           <div className="filteritem flex flex-col justify-center items-center gap-2">
             <div className=" flex gap-2">
-              <input type="radio" id="lowestPrice" name="price" />
+              <input
+                type="radio"
+                id="lowestPrice"
+                name="price"
+                onChange={() => setSort("asc")}
+              />
               <label htmlFor="lowestPrice">Lowest Price</label>
             </div>
             <div className=" flex gap-2">
-              <input type="radio" id="highestPrice" name="price" />
+              <input
+                type="radio"
+                id="highestPrice"
+                name="price"
+                onChange={() => setSort("desc")}
+              />
               <label htmlFor="highestPrice">Highest Price</label>
             </div>
           </div>
@@ -85,6 +95,7 @@ const Products = () => {
           <List
             priceRange={priceRange}
             categoryId={categoryId}
+            sort={sort}
             selectedSubCategories={selectedSubCategories}
           />
         </div>
