@@ -7,9 +7,11 @@ import PermIdentityOutlinedIcon from "@mui/icons-material/PermIdentityOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import Cart from "../Cart/Cart";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const products = useSelector((state) => state.cart.products);
 
   return (
     <div className="h-16 flex justify-center items-center relative">
@@ -59,7 +61,7 @@ const Navbar = () => {
             >
               <ShoppingCartOutlinedIcon />
               <div className="bubble h-5 w-5 rounded-full bg-red-400 absolute -top-2 -right-2  flex items-center justify-center text-white z-10">
-                7
+                {products.length}
               </div>
             </div>
             <div className="item">

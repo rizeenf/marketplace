@@ -3,45 +3,57 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 import BalanceOutlinedIcon from "@mui/icons-material/BalanceOutlined";
 import useFetch from "../../hook/useFetch";
 import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../redux/cartReducer";
 
 const Product = () => {
   const [currentMainImg, setCurrentMainImg] = useState("img1");
   const [quantity, setQuantity] = useState(1);
   const productId = parseInt(useParams().id);
+  const dispatch = useDispatch();
 
   const { data, loading, error } = useFetch(`products/${productId}?populate=*`);
 
   return (
     <div className="product flex mx-16">
-      <div className="left flex-1 flex gap-2 h-full justify-center">
-        <div className="sideimg flex flex-col justify-start max-h-screen gap-1">
-          <img
-            src={
-              import.meta.env.VITE_APP_URL +
-              data?.attributes?.img1.data.attributes.url
-            }
-            alt="Images"
-            className=" w-32 h-48 object-cover cursor-pointer hover:opacity-70 "
-            onClick={() => setCurrentMainImg("img1")}
-          />
-          <img
-            src={
-              import.meta.env.VITE_APP_URL +
-              data?.attributes?.img2.data.attributes.url
-            }
-            alt="Images"
-            className=" w-32 h-48 object-cover cursor-pointer hover:opacity-70 "
-            onClick={() => setCurrentMainImg("img2")}
-          />
-        </div>
-        <img
-          src={
-            import.meta.env.VITE_APP_URL +
-            data?.attributes?.[currentMainImg].data.attributes.url
-          }
-          className="mainImg w-[420px] h-[600px] object-cover"
-        />
-      </div>
+      {error ? (
+        "Error .."
+      ) : loading ? (
+        "Loading .."
+      ) : (
+        <>
+          <div className="left flex-1 flex gap-2 h-full justify-center">
+            <div className="sideimg flex flex-col justify-start max-h-screen gap-1">
+              <img
+                src={
+                  import.meta.env.VITE_APP_URL +
+                  data?.attributes?.img1.data.attributes.url
+                }
+                alt="Images"
+                className=" w-32 h-48 object-cover cursor-pointer hover:opacity-70 "
+                onClick={() => setCurrentMainImg("img1")}
+              />
+              <img
+                src={
+                  import.meta.env.VITE_APP_URL +
+                  data?.attributes?.img2.data.attributes.url
+                }
+                alt="Images"
+                className=" w-32 h-48 object-cover cursor-pointer hover:opacity-70 "
+                onClick={() => setCurrentMainImg("img2")}
+              />
+            </div>
+            <img
+              src={
+                import.meta.env.VITE_APP_URL +
+                data?.attributes?.[currentMainImg].data.attributes.url
+              }
+              className="mainImg w-[420px] h-[600px] object-cover"
+            />
+          </div>
+        </>
+      )}
+
       <div className="right flex-1 flex flex-col gap-5 mt-3 text-gray-700">
         <div className="div flex justify-around items-center flex-row p-2">
           <div className="title text-lg font-semibold">
@@ -69,7 +81,21 @@ const Product = () => {
             +
           </button>
         </div>
-        <button className="addCart bg-red-400 w-36 text-lg text-white rounded-sm h-10 flex justify-center items-center hover:opacity-70">
+        <button
+          onClick={() =>
+            dispatch(
+              addToCart({
+                id: data.id,
+                title: data.attributes.title,
+                desc: data.attributes.desc,
+                price: data.attributes.price,
+                img1: data.attributes.img1.data.attributes.url,
+                quantity,
+              })
+            )
+          }
+          className="addCart bg-red-400 w-36 text-lg text-white rounded-sm h-10 flex justify-center items-center hover:opacity-70"
+        >
           Add to cart
         </button>
         <div className="option flex flex-row gap-8 text-sm text-gray-500">
